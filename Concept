@@ -1,0 +1,29 @@
+1. Thu Thập Dữ Liệu Lịch Sử
+Bạn cần thu thập dữ liệu giá lịch sử của Bitcoin (hoặc tài sản bạn muốn dự đoán) và các chỉ báo kỹ thuật (như RSI, MACD, Bollinger Bands, v.v.). Dữ liệu này sẽ được chia thành hai phần:
+
+Dữ liệu huấn luyện (Training Data): Dùng để huấn luyện mô hình dự báo.
+Dữ liệu kiểm tra (Test Data): Dùng để kiểm tra độ chính xác của mô hình.
+2. Xây Dựng Mô Hình Dự Báo
+Sử dụng các chỉ báo kỹ thuật và mẫu nến để tạo tín hiệu dự báo. Sau đó, bạn có thể sử dụng các mô hình học máy để cải thiện độ chính xác của dự báo. Một số mô hình bạn có thể sử dụng bao gồm:
+
+Decision Trees (Cây quyết định)
+Random Forest
+Support Vector Machine (SVM)
+Neural Networks (Mạng nơ-ron)
+3. Huấn Luyện Mô Hình
+Sử dụng dữ liệu huấn luyện để huấn luyện mô hình của bạn. Mô hình sẽ học cách nhận dạng các mẫu nến và chỉ báo kỹ thuật từ dữ liệu quá khứ để dự đoán xu hướng trong tương lai.
+
+4. Kiểm Tra Độ Chính Xác
+Sau khi huấn luyện, kiểm tra mô hình của bạn với dữ liệu kiểm tra. Để đánh giá độ chính xác của mô hình, bạn có thể sử dụng các thước đo như:
+
+Accuracy (Độ chính xác): Phần trăm dự đoán đúng trên tổng số dự đoán.
+Precision (Độ chính xác của tín hiệu): Tỷ lệ tín hiệu chính xác trên tổng số tín hiệu được phát ra.
+Recall (Tỷ lệ tìm đúng): Tỷ lệ tín hiệu chính xác trên tổng số tín hiệu chính xác có thể phát ra.
+F1 Score: Một số đo kết hợp giữa Precision và Recall.
+5. Dự Đoán Với Độ Chính Xác Cụ Thể
+Để dự đoán với độ chính xác mong muốn, bạn cần tinh chỉnh mô hình và thiết lập ngưỡng để lọc tín hiệu:
+
+Tinh chỉnh mô hình: Điều chỉnh các tham số mô hình dựa trên dữ liệu kiểm tra để tăng độ chính xác.
+Thiết lập ngưỡng: Thiết lập một ngưỡng cho tín hiệu mua/bán để đảm bảo chỉ các tín hiệu có độ tin cậy cao (ví dụ: >70% độ chính xác) mới được chấp nhận.
+6. Tính Toán Độ Chính Xác Từ Kết Quả
+Dưới đây là một ví dụ cụ thể trong Python để tính độ chính xác của mô hình dựa trên dữ liệu quá khứ:
