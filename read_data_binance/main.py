@@ -45,8 +45,8 @@ def fetch_all_binance_kline(symbol, interval, start_time):
 if __name__ == "__main__":
     # Set parameters
     symbol = "BTCUSDT"  # Trading pair
-    intervals = ["1h", "2h", "4h", "1d"]  # List of intervals
-    start_time = 1483228800000  # Start time in milliseconds (1/1/2017)
+    intervals = ["1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h", "1d"]  # List of intervals
+    start_time = int(pd.Timestamp("2024-10-01").timestamp() * 1000)
 
     for interval in intervals:
         # Fetch data
