@@ -1,5 +1,5 @@
 # main.py
-import numpy as np
+import pandas as pd
 from load_data import load_data, resample_and_merge
 from indicators import calculate_technical_indicators
 from preprocess import create_sequences
@@ -34,7 +34,7 @@ print("Thống kê mô tả:", merged_data.describe())
 
 
 # 3. Chuẩn bị dữ liệu cho mô hình
-x_train, y_train = create_sequences(merged_data, lookback=lookback)
+x_train, y_train = create_sequences(merged_data, lookback=lookback, forecast_horizon=4)
 # nan_indices = np.where(np.isnan(x_train))
 # print("Indices of NaN in x_train:", nan_indices)
 # print("Has NaN in x_train:", np.isnan(x_train).any())
@@ -45,15 +45,15 @@ x_train, y_train = create_sequences(merged_data, lookback=lookback)
 
 
 # 4. Xây dựng và huấn luyện mô hình
-model = build_lstm_model((x_train.shape[1], x_train.shape[2]))
+model = build_lstm_model((x_train.shape[1], x_train.shape[2]), output_steps=4)
 model.fit(x_train, y_train, epochs=200, batch_size=32)
 
 # 5. Dự đoán giá và gửi tín hiệu
 recent_data = x_train[-1]
+last_time = data['15m'].index[-1]  # Thời gian cuối cùng trong dữ liệu
+start_time = last_time + pd.Timedelta(minutes=15)  # Cộng thêm 15 phút cho nến tiếp theo
 
-predicted_price = predict_price(model, recent_data)
-actual_price = data['15m'].tail(1)['Close'].values[0]
-print(f"Actual Price: {actual_price}, Predicted Price: {predicted_price}")
-print("Predicted Price:", predicted_price)
+predicted_df = predict_price(model, recent_data, start_time)
+print(predicted_df)
 # model.summary()
 # send_signal(predicted_price, bot_token, chat_id)
